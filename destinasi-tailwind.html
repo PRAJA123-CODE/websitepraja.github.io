@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinasi Terpopuler - My Trip Nusa Penida</title>
+    <meta name="description" content="Jelajahi destinasi terpopuler di Nusa Penida seperti Kelingking Beach, Angel Billabong, Broken Beach, dan destinasi menarik lainnya.">
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        'primary-dark': '#1d4ed8',
+                        secondary: '#64748b',
+                        accent: '#f59e0b',
+                        success: '#10b981',
+                        danger: '#ef4444',
+                        warning: '#f59e0b',
+                        info: '#3b82f6',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .text-shadow { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+    </style>
+</head>
+<body class="font-poppins">
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="text-center">
+            <img src="logo.jpg" alt="My Trip Nusa Penida" class="w-20 h-20 rounded-full mx-auto mb-4 animate-pulse">
+            <div class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p class="mt-4 text-gray-600">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+        <nav class="bg-transparent backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-3">
+                        <img src="logo.jpg" alt="My Trip Nusa Penida" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h1 class="text-lg font-bold text-gray-900">My Trip</h1>
+                            <span class="text-sm text-gray-600">Nusa Penida</span>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="index.html" class="text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-lg">Home</a>
+                        <a href="tentang.html" class="text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-lg">Tentang Kami</a>
+                        <a href="paket.html" class="text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-lg">Paket Tour</a>
+                        <a href="destinasi.html" class="text-primary font-semibold bg-blue-50 px-4 py-2 rounded-lg relative">
+                            Destinasi
+                            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full"></div>
+                        </a>
+                        <a href="galeri.html" class="text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-lg">Galeri</a>
+                        <a href="reservasi.html" class="text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-lg">Reservasi</a>
+                        <a href="testimonial.html" class="text-gray-700 hover:text-primary transition-colors px-4 py-2 rounded-lg">Testimonial</a>
+                    </div>
+
+
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md border-t">
+                <div class="px-4 py-4 space-y-2">
+                    <a href="index.html" class="block text-gray-700 hover:text-primary px-4 py-2 rounded-lg">Home</a>
+                    <a href="tentang.html" class="block text-gray-700 hover:text-primary px-4 py-2 rounded-lg">Tentang Kami</a>
+                    <a href="paket.html" class="block text-gray-700 hover:text-primary px-4 py-2 rounded-lg">Paket Tour</a>
+                    <a href="destinasi.html" class="block text-primary font-semibold bg-blue-50 px-4 py-2 rounded-lg">Destinasi</a>
+                    <a href="galeri.html" class="block text-gray-700 hover:text-primary px-4 py-2 rounded-lg">Galeri</a>
+                    <a href="reservasi.html" class="block text-gray-700 hover:text-primary px-4 py-2 rounded-lg">Reservasi</a>
+                    <a href="testimonial.html" class="block text-gray-700 hover:text-primary px-4 py-2 rounded-lg">Testimonial</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="relative pt-32 pb-16 min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Hero Background Slider -->
+        <div class="absolute inset-0 z-0">
+            <div class="hero-slider swiper h-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="image/foto21.jpg" alt="Kelingking Beach" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto22.jpg" alt="Angel Billabong" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto23.jpg" alt="Broken Beach" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto24.jpg" alt="Crystal Bay" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto25.jpg" alt="Diamond Beach" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto26.jpg" alt="Atuh Beach" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto27.jpg" alt="Peguyangan Waterfall" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto28.jpg" alt="Tembeling Beach" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto29.jpg" alt="Manta Point" class="w-full h-full object-cover">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="image/foto30.jpg" alt="Gamat Bay" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 text-shadow">Destinasi Terpopuler</h1>
+            
+            <nav class="flex justify-center items-center space-x-2 text-sm">
+                <a href="index-tailwind.html" class="text-white hover:text-accent transition-colors">Home</a>
+                <span class="text-white opacity-80">/</span>
+                <span class="text-white opacity-80">Destinasi</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Destinasi Populer di Nusa Penida</h2>
+                <a href="galeri.html" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                    Lihat Semua Destinasi
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="image/foto5.jpg" alt="Kelingking Beach" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="font-semibold">Kelingking Beach</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="image/foto4.jpg" alt="Atuh Beach" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="font-semibold">Atuh Beach</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="image/foto23.jpg" alt="Bukit Teletubbies" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="font-semibold">Bukit Teletubbies</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="tarvel11.jpg" alt="Crystal Bay Beach" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="font-semibold">Crystal Bay Beach</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="500">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="tarvel9.jpg" alt="Air Terjun Peguyangan" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="font-semibold">Air Terjun Peguyangan</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="image/foto30.jpg" alt="Seganing Waterfall" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="font-semibold">Seganing Waterfall</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="700">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="image/foto24.jpg" alt="Bukit Molenteng" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="font-semibold">Bukit Molenteng</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="800">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="image/foto25.jpg" alt="Broken Beach" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="font-semibold">Broken Beach</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <p class="text-xl mb-8">
+                Dapatkan pengalaman menjelajah Nusa Penida dengan layanan taksi terpercaya. Mulai dari Rp 100rb, kami siap mengantarkan Anda ke destinasi favorit Anda
+            </p>
+                            <a href="paket.html" class="bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-2">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Booking Tour Nusa Penida Sekarang!</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="logo.jpg" alt="My Trip Nusa Penida" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h3 class="text-lg font-bold">My Trip</h3>
+                            <span class="text-sm text-gray-400">Nusa Penida</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Your trusted travel partner in Nusa Penida. We provide exceptional travel experiences that combine adventure, comfort, and authentic local insights.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="tentang.html" class="text-gray-400 hover:text-white transition-colors">Tentang Kami</a></li>
+                        <li><a href="paket.html" class="text-gray-400 hover:text-white transition-colors">Paket Tour Nusa Penida</a></li>
+                        <li><a href="destinasi.html" class="text-gray-400 hover:text-white transition-colors">Destinasi Terpopuler</a></li>
+                        <li><a href="galeri.html" class="text-gray-400 hover:text-white transition-colors">Galeri</a></li>
+                        <li><a href="reservasi.html" class="text-gray-400 hover:text-white transition-colors">Reservasi</a></li>
+                        <li><a href="testimonial.html" class="text-gray-400 hover:text-white transition-colors">Testimonial</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>+62 812-3864-5535</span>
+                        </p>
+                        <p class="flex items-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span><a href="https://www.instagram.com/praa___jaa/" target="_blank" class="text-blue-600 hover:text-blue-800">Contact via Instagram</a></span>
+                        </p>
+                        <p class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nusa Penida, Bali, Indonesia</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors">
+                            <a href="https://www.instagram.com/praa___jaa/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-green-500 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 My Trip Nusa Penida. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <div class="fixed bottom-6 right-6 z-50">
+                                <a href="https://wa.me/+6287765279792" class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center space-x-2">
+            <i class="fab fa-whatsapp text-xl"></i>
+            <span class="hidden sm:block">Chat WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- Back to Top -->
+    <div id="back-to-top" class="fixed bottom-6 left-6 z-50 opacity-0 pointer-events-none transition-all duration-300">
+        <button class="bg-primary hover:bg-primary-dark text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.classList.add('bg-white/95', 'shadow-md');
+            } else {
+                header.classList.remove('bg-white/95', 'shadow-md');
+            }
+        });
+
+        // Back to Top
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html> 
+
